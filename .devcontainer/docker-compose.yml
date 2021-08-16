@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    init: true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker-host.sock
+      - ..:/workspace:cached
+
+    # Overrides default command so things don't shut down after the process ends.
+    entrypoint: /usr/local/share/docker-init.sh
+    command: sleep infinity
+
+    # Uncomment the next line to use a non-root user for all processes.
+    user: node
+
+    # Use "forwardPorts" in **devcontainer.json** to forward an app port locally.
+    # (Adding the "ports" property to this file will not forward from a Codespace.)
+
+  # storage:
+  #   container_name: azurite
+  #   image: mcr.microsoft.com/azure-storage/azurite:latest
+  #   restart: unless-stopped
+  #   volumes:
+  #     - storage-data:/data
+
+  # db:
+  #   image: mongo:latest
+  #   restart: unless-stopped
+  #   volumes:
+  #     - mongodb-data:/data/db
+
+  # Add "forwardPorts": ["10000", "10001"] to **devcontainer.json** to forward Azurite locally.
+  # (Adding the "ports" property to this file will not forward from a Codespace.)
+  # Add "forwardPorts": ["27017"] to **devcontainer.json** to forward MongoDB locally.
+  # (Adding the "ports" property to this file will not forward from a Codespace.)
