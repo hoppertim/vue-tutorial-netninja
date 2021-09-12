@@ -1,10 +1,12 @@
 {
   "extends": [
+    "plugin:vue/vue3-essential",
     "eslint:recommended",
-    "plugin:vue/recommended",
-    "plugin:prettier/recommended"
+    "@vue/prettier"
   ],
-  "plugins": ["prettier"],
+  "parserOptions": {
+    "parser": "babel-eslint"
+  },
   "rules": {
     "prettier/prettier": "error",
     "vue/no-multiple-template-root": "off"
